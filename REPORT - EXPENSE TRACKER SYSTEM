@@ -1,0 +1,161 @@
+EXPENSE TRACKER SYSTEM (C PROGRAM)
+
+1. Introduction
+
+Managing daily expenses is an important task in today’s life. Many people find it difficult to track where their money is being spent. This project, **Expense Tracker System**, is a simple console-based application written in the C programming language that helps users record and analyze their expenses efficiently.
+
+---
+
+2. Objective
+
+The main objectives of this project are:
+
+* To record daily expenses easily
+* To calculate total spending
+* To identify highest and lowest expenses
+* To categorize expenses for better understanding
+* To improve programming skills using structures and arrays in C
+
+---
+
+3. Features of the System
+
+* Add new expenses with details (date, category, description, amount)
+* View all recorded expenses
+* Calculate total spendings
+* Display highest and lowest expense
+* View category-wise expenses
+* High spending alert for expenses above ₹5000
+
+---
+
+4. Tools & Technologies Used
+
+* **Programming Language:** C
+* **Concepts Used:**
+
+  * Structures
+  * Arrays
+  * Loops
+  * Conditional statements
+  * String handling (`strcmp`)
+
+---
+
+5. System Design
+
+5.1 Structure Used
+
+```c
+struct Expense {
+    char date[50];
+    char category[20];
+    char description[50];
+    float amount;
+};
+```
+
+This structure stores:
+
+* Date of expense
+* Category (Food, Travel, etc.)
+* Description
+* Amount
+
+---
+
+6. Algorithm
+6.1 Add Expense
+
+1. Check if storage limit is reached
+2. Input date, category, description, and amount
+3. If amount > 5000, show alert
+4. Store data in array
+5. Increment count
+
+---
+
+6.2 View All Expenses
+
+1. Check if any record exists
+2. If yes, display all expenses using loop
+
+---
+
+6.3 Total Spending
+
+1. Initialize total = 0
+2. Traverse all expenses
+3. Add each amount to total
+4. Display total
+
+---
+
+6.4 Highest & Lowest Expense
+
+1. Assume first expense as max and min
+2. Traverse list
+3. Update max and min accordingly
+4. Display both
+
+---
+
+6.5 Category-wise Expenses
+
+1. Input category name
+2. Traverse list
+3. Compare using `strcmp()`
+4. Display matching records
+5. Calculate and display total
+
+---
+
+ Output (Sample)
+
+```
+---- MENU ----
+1. Add Expense
+2. View All Expenses
+3. Total Spendings
+4. Highest & Lowest Expense
+5. View Category-wise Expenses
+6. Exit
+
+Enter your choice: 1
+Expense added successfully!
+```
+
+---
+
+8. Advantages
+
+* Simple and easy to use
+* Helps in financial awareness
+* Efficient data storage using structures
+* Quick analysis of expenses
+
+---
+
+9. Limitations
+
+* Limited to 100 expenses
+* No file storage (data lost after program ends)
+* No graphical interface
+
+---
+
+10. Future Enhancements
+
+* Add file handling to save data permanently
+* Create a graphical user interface (GUI)
+* Add monthly/weekly reports
+* Add password protection
+* Export data to Excel
+
+---
+
+11. Conclusion
+
+The Expense Tracker System is a useful and simple application that helps users manage their daily expenses effectively. It demonstrates the practical use of structures, arrays, and control statements in C programming. This project enhances logical thinking and problem-solving skills.
+
+
