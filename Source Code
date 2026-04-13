@@ -1,0 +1,184 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+    struct Expense {
+        char date[50];
+        char category[20];
+        char description[50];
+        float amount;
+    };
+
+    struct Expense expenses[100];
+    int count = 0;
+    int choice;
+
+    printf("Welcome to Expense Tracker!\n");
+
+    while (1) {
+
+        printf("\n---- MENU ----\n");
+        printf("1. Add Expense\n");
+        printf("2. View All Expenses\n");
+        printf("3. Total Spendings\n");
+        printf("4. Highest & Lowest Expense\n");
+        printf("5. View Category-wise Expenses\n");
+        printf("6. Exit\n\n");
+
+        printf("Enter your choice (1-6): ");
+        scanf("%d", &choice);
+
+        /* Add Expense */
+        if (choice == 1) {
+
+            if (count >= 100) {
+                printf("Storage full! Cannot add more expenses.\n");
+            } else {
+
+                printf("Enter date (MM-DD-YYYY): ");
+                scanf("%s", expenses[count].date);
+
+                printf("Enter category: ");
+                scanf("%s", expenses[count].category);
+
+                printf("Enter description: ");
+                scanf("%s", expenses[count].description);
+
+                printf("Enter amount (₹): ");
+                scanf("%f", &expenses[count].amount);
+
+                if (expenses[count].amount > 5000) {
+                    printf("High spending alert!\n");
+                }
+
+                count++;
+                printf("Expense added successfully!\n");
+            }
+        }
+
+        /* View All Expenses */
+        else if (choice == 2) {
+
+            if (count == 0) {
+                printf("No expenses recorded yet.\n");
+            } else {
+                printf("\n--- All Expenses ---\n");
+                for (int i = 0; i < count; i++) {
+                    printf("%d | %s | %s | %s | %.2f\n",
+                           i + 1,
+                           expenses[i].date,
+                           expenses[i].category,
+                           expenses[i].description,
+                           expenses[i].amount);
+                }
+            }
+        }
+
+        /* Total Spendings */
+        else if (choice == 3) {
+
+            float total = 0;
+
+            for (int i = 0; i < count; i++) {
+                total += expenses[i].amount;
+            }
+
+            printf("Total Spendings: %.2f\n", total);
+        }
+
+        /* Highest & Lowest Expense */
+        else if (choice == 4) {
+
+            if (count == 0) {
+                printf("No expenses recorded.\n");
+            } else {
+
+                float max = expenses[0].amount;
+                float min = expenses[0].amount;
+                int maxIndex = 0;
+                int minIndex = 0;
+
+                for (int i = 1; i < count; i++) {
+
+                    if (expenses[i].amount > max) {
+                        max = expenses[i].amount;
+                        maxIndex = i;
+                    }
+
+                    if (expenses[i].amount < min) {
+                        min = expenses[i].amount;
+                        minIndex = i;
+                    }
+                }
+
+                printf("\nHighest Expense:\n");
+                printf("%s | %s | %s | %.2f\n",
+                       expenses[maxIndex].date,
+                       expenses[maxIndex].category,
+                       expenses[maxIndex].description,
+                       expenses[maxIndex].amount);
+
+                printf("\nLowest Expense:\n");
+                printf("%s | %s | %s | %.2f\n",
+                       expenses[minIndex].date,
+                       expenses[minIndex].category,
+                       expenses[minIndex].description,
+                       expenses[minIndex].amount);
+            }
+        }
+
+        /* Category-wise Expenses */
+        else if (choice == 5) {
+
+            if (count == 0) {
+                printf("No expenses recorded.\n");
+            } else {
+
+                char searchCategory[20];
+                float categoryTotal = 0;
+                int found = 0;
+
+                printf("Enter category: ");
+                scanf("%s", searchCategory);
+
+                printf("\nExpenses in %s category:\n", searchCategory);
+
+                for (int i = 0; i < count; i++) {
+
+                    if (strcmp(expenses[i].category, searchCategory) == 0) {
+
+                        printf("%d | %s | %s | %s | %.2f\n",
+                               i + 1,
+                               expenses[i].date,
+                               expenses[i].category,
+                               expenses[i].description,
+                               expenses[i].amount);
+
+                        categoryTotal += expenses[i].amount;
+                        found = 1;
+                    }
+                }
+
+                if (found == 0) {
+                    printf("No expenses found in this category.\n");
+                } else {
+                    printf("Total for %s: %.2f\n", searchCategory, categoryTotal);
+                }
+            }
+        }
+
+        /* Exit */
+        else if (choice == 6) {
+            printf("Thank you for using our tracker!\n");
+            break;
+        }
+
+        else {
+            printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
+
